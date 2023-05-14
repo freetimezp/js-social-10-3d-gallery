@@ -1,0 +1,110 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100vh;
+    font-size: 15px;
+    color: #28282f;
+}
+
+
+p,
+img,
+div {
+    vertical-align: middle;
+} 
+
+/* .hide {
+    display: none;
+} */
+
+.background_menu {
+    width: 900px;
+    max-width: 900px;
+    min-height: 100vh;
+    position: relative;
+    margin-inline: auto;
+    border-radius: 1rem;
+}
+
+.menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 0.9em;
+    text-align: center;
+    font-size: 1.4em;
+    background-color: #fff;
+    opacity: 1;
+    border-radius: 1rem;  
+}
+
+.menu .img_container {
+    max-width: 100%;
+    height: 400px;
+    display: block;
+    border-radius: 1rem 1rem 0 0;  
+    margin-bottom: 2rem;
+}
+
+.menu .img_container img {
+    width: 100%;
+    border-radius: 1rem 1rem 0 0; 
+    object-fit: cover;
+    max-height: 400px;
+}
+
+.menu .content div {
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+}
+
+.menu h1 {
+    letter-spacing: 0.1em;
+}
+
+.menu p {
+    margin: 0;
+}
+
+.menu #play-button {
+    display: inline-block;
+    border-radius: 0.9em;
+    border: 0.3em solid rgb(108, 108, 240);
+    padding: 0.7em 1.2em;
+    margin-bottom: 1.5em;
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+}
+.menu #play-button:hover {
+    border-color: #2323be;
+    background-color: #aaaaee;
+}
+.menu #play-button p {
+    letter-spacing: 0.1em;
+    color: #48484f;
+    font-size: 1.3em;
+}
+.menu #play-button:hover p {
+    color: #fff;
+}
+
+
+/* 
+canvas {
+    width: 100%;
+    height: 100%;
+} */
+
+
