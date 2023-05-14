@@ -8,9 +8,12 @@ html,
 body {
     width: 100%;
     max-width: 100%;
-    min-height: 100vh;
     font-size: 15px;
     color: #28282f;
+}
+
+body {
+    overflow-x: hidden;
 }
 
 p,
