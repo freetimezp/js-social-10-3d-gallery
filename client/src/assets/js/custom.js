@@ -1,3 +1,5 @@
+import * as THREE from 'three';
+import { PointerLockControls } from 'three-stdlib';
 //console.log(THREE);
 
 const scene = new THREE.Scene();
@@ -9,9 +11,9 @@ const camera = new THREE.PerspectiveCamera(
     0.1, //near plane
     1000 //far plane
 );
+camera.position.z = 5; //move camera back 5 units
 
 scene.add(camera);
-camera.position.z = 5; //move camera back 5 units
 
 //Renderer
 const renderer = new THREE.WebGLRenderer({ antialias: false }); //for smooth adges
@@ -20,7 +22,7 @@ renderer.setClearColor(0xffffff, 1); //bg
 document.body.appendChild(renderer.domElement); // add renderer to our html
 
 //set light
-const ambientLight = new THREE.AmbientLight(0xdddddd, 1.0); //color, intensity, distance, decay
+const ambientLight = new THREE.AmbientLight(0xffffff, 1.0); //color, intensity, distance, decay
 ambientLight.position = camera.position; //light follows camera
 scene.add(ambientLight);
 
@@ -37,8 +39,7 @@ const cube = new THREE.Mesh(geometry, material); // create cube
 scene.add(cube);
 
 //texture of the floor
-const floorTexture = new THREE.TextureLoader().load('assets/img/floor.jpg');
-
+const floorTexture = new THREE.TextureLoader().load('img/floor.jpg');
 floorTexture.wrapS = THREE.RepeatWrapping; // horisontal
 floorTexture.wrapT = THREE.RepeatWrapping; // vertical
 floorTexture.repeat.set(20, 20); // how many times texture repeat
@@ -57,34 +58,41 @@ scene.add(floorPlane);
 //create walls plane
 const wallGroup = new THREE.Group(); // create a group of all walls
 scene.add(wallGroup);
+
 //front wall
 const frontWall = new THREE.Mesh(
     new THREE.BoxGeometry(50, 20, 0.001),
-    new THREE.MeshBasicMaterial({ color: "green" })
+    new THREE.MeshLambertMaterial({ color: "green" })
 ); // color of front wall 
 frontWall.position.z = -25; // to move front wall back from camera
 
 //left wall
 const leftWall = new THREE.Mesh(
     new THREE.BoxGeometry(50, 20, 0.001),
-    new THREE.MeshBasicMaterial({ color: "blue" })
+    new THREE.MeshLambertMaterial({ color: "blue" })
 ); // color of left wall 
 leftWall.rotation.y = Math.PI / 2; // rotate left wall on 90deg
 leftWall.position.x = -25; // move left wall on x to left
 
-//left wall
+//right wall
 const rightWall = new THREE.Mesh(
     new THREE.BoxGeometry(50, 20, 0.001),
-    new THREE.MeshBasicMaterial({ color: "blue" })
+    new THREE.MeshLambertMaterial({ color: "blue" })
 ); // color of right wall 
 rightWall.rotation.y = Math.PI / 2; // rotate right wall on 90deg
 rightWall.position.x = 25; // move right wall on x to right
 
 wallGroup.add(frontWall, leftWall, rightWall); //add all walls to group
 
+//loop through each wall and create the bounding box
+for (let i = 0; i < wallGroup.children.length; i++) {
+    wallGroup.children[i].BBox = new THREE.Box3();
+    wallGroup.children[i].BBox.setFromObject(wallGroup.children[i]);
+}
+
 //create ceiling
 const ceilingGeometry = new THREE.PlaneBufferGeometry(50, 50);
-const ceilingMaterial = new THREE.MeshBasicMaterial({ color: 'purple' }); // color ceiling
+const ceilingMaterial = new THREE.MeshLambertMaterial({ color: 'purple' }); // color ceiling
 const ceilingPlane = new THREE.Mesh(ceilingGeometry, ceilingMaterial);
 ceilingPlane.rotation.x = Math.PI / 2; // rotate ceiling on 90deg
 ceilingPlane.position.y = 10; // move ceiling on y to up
