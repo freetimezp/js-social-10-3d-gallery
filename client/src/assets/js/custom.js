@@ -23,7 +23,6 @@ document.body.appendChild(renderer.domElement); // add renderer to our html
 
 //set light
 const ambientLight = new THREE.AmbientLight(0xffffff, 1.0); //color, intensity, distance, decay
-ambientLight.position = camera.position; //light follows camera
 scene.add(ambientLight);
 
 //direction light
@@ -45,7 +44,7 @@ floorTexture.wrapT = THREE.RepeatWrapping; // vertical
 floorTexture.repeat.set(20, 20); // how many times texture repeat
 
 //create floor plane
-const planeGeometry = new THREE.PlaneBufferGeometry(50, 50); //box geometry is the shape of object
+const planeGeometry = new THREE.PlaneGeometry(50, 50); //box geometry is the shape of object
 const planeMaterial = new THREE.MeshBasicMaterial({
     map: floorTexture,
     side: THREE.DoubleSide
@@ -91,14 +90,38 @@ for (let i = 0; i < wallGroup.children.length; i++) {
 }
 
 //create ceiling
-const ceilingGeometry = new THREE.PlaneBufferGeometry(50, 50);
+const ceilingGeometry = new THREE.PlaneGeometry(50, 50);
 const ceilingMaterial = new THREE.MeshLambertMaterial({ color: 'purple' }); // color ceiling
 const ceilingPlane = new THREE.Mesh(ceilingGeometry, ceilingMaterial);
 ceilingPlane.rotation.x = Math.PI / 2; // rotate ceiling on 90deg
 ceilingPlane.position.y = 10; // move ceiling on y to up
 scene.add(ceilingPlane);
 
+//create our painting block
+function createPainting(imageUrl, width, height, position) {
+    const textureLoader = new THREE.TextureLoader();
+    const paintingTexture = textureLoader.load(imageUrl);
+    const paintingMaterial = new THREE.MeshBasicMaterial({
+        map: paintingTexture
+    });
+    const paintingGeometry = new THREE.PlaneGeometry(width, height);
+    const painting = new THREE.Mesh(paintingGeometry, paintingMaterial);
 
+    painting.position.set(position.x, position.y, position.z);
+
+    return painting;
+};
+
+// paint 1
+const painting1 = createPainting(
+    'img/gallery/img-1.jpg', 10, 5, new THREE.Vector3(-10, 5, -24.99)
+);
+// paint 2
+const painting2 = createPainting(
+    'img/gallery/img-2.jpg', 10, 5, new THREE.Vector3(10, 5, -24.99)
+);
+
+scene.add(painting1, painting2);
 
 //add controls, when we press keys
 document.addEventListener('keydown', onKeyDown, false);
