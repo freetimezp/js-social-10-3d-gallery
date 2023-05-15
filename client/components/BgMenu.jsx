@@ -6,7 +6,7 @@ import BgMenuImg from '../public/img/bg-menu.jpg';
 
 const BgMenu = () => {
     return (
-        <div className="background_menu">
+        <div className="background_menu" id="menu-wrap">
             <div className="menu" id="menu">
                 <div className="img_container" id="img-container">
                     <img src={BgMenuImg} alt="stars" />

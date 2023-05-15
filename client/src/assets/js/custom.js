@@ -123,6 +123,34 @@ const painting2 = createPainting(
 
 scene.add(painting1, painting2);
 
+//attach camera to controls
+const controls = new PointerLockControls(camera, document.body);
+
+//start play gallery and hide main menu
+function startExpirience() {
+    //lock pointer
+    controls.lock();
+
+    //hide menu
+    hideMenu();
+}
+
+const playButton = document.getElementById('play-button');
+playButton.addEventListener('click', startExpirience);
+
+//hide menu 
+function hideMenu() {
+    const menu = document.getElementById('menu-wrap');
+    menu.classList.add('hide');
+};
+//show menu 
+function showMenu() {
+    const menu = document.getElementById('menu-wrap');
+    menu.classList.remove('hide');
+};
+
+controls.addEventListener('unlock', showMenu);
+
 //add controls, when we press keys
 document.addEventListener('keydown', onKeyDown, false);
 function onKeyDown(event) {
