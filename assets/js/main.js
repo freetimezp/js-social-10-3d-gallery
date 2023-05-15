@@ -20,39 +20,67 @@ renderer.setClearColor(0xffffff, 1); //bg
 document.body.appendChild(renderer.domElement); // add renderer to our html
 
 //set light
-let ambientLight = new THREE.AmbientLight(0x101010, 1.0); //color, intensity, distance, decay
+const ambientLight = new THREE.AmbientLight(0x101010, 1.0); //color, intensity, distance, decay
 ambientLight.position = camera.position; //light follows camera
 scene.add(ambientLight);
 
 //direction light
-let sunLight = new THREE.DirectionalLight(0xddddd, 1.0); //color, intensity
+const sunLight = new THREE.DirectionalLight(0xddddd, 1.0); //color, intensity
 sunLight.position.y = 15;
 scene.add(sunLight);
 
 //geometry
-let geometry = new THREE.BoxGeometry(1, 1, 1); //box geometry is the shape of object
+const geometry = new THREE.BoxGeometry(1, 1, 1); //box geometry is the shape of object
 //material
-let material = new THREE.MeshBasicMaterial({ color: "#7282ca" }); // color of the object
-let cube = new THREE.Mesh(geometry, material); // create cube
+const material = new THREE.MeshBasicMaterial({ color: "#7282ca" }); // color of the object
+const cube = new THREE.Mesh(geometry, material); // create cube
 scene.add(cube);
 
 //texture of the floor
-let floorTexture = new THREE.TextureLoader().load('assets/img/floor.jpg');
+const floorTexture = new THREE.TextureLoader().load('assets/img/floor.jpg');
 
 floorTexture.wrapS = THREE.RepeatWrapping; // horisontal
 floorTexture.wrapT = THREE.RepeatWrapping; // vertical
 floorTexture.repeat.set(20, 20); // how many times texture repeat
 
 //create floor plane
-let planeGeometry = new THREE.PlaneGeometry(50, 50); //box geometry is the shape of object
-let planeMaterial = new THREE.MeshBasicMaterial({
+const planeGeometry = new THREE.PlaneBufferGeometry(50, 50); //box geometry is the shape of object
+const planeMaterial = new THREE.MeshBasicMaterial({
     map: floorTexture,
     side: THREE.DoubleSide
 }); // color of the object
-let floorPlane = new THREE.Mesh(planeGeometry, planeMaterial); // create floor
+const floorPlane = new THREE.Mesh(planeGeometry, planeMaterial); // create floor
 floorPlane.rotation.x = Math.PI / 2; // this is 90 deg
 floorPlane.position.y = -Math.PI; // this is -180 deg
 scene.add(floorPlane);
+
+//create walls plane
+const wallGroup = new THREE.Group(); // create a group of all walls
+scene.add(wallGroup);
+//front wall
+const frontWall = new THREE.Mesh(
+    new THREE.BoxGeometry(50, 20, 0.001),
+    new THREE.MeshBasicMaterial({ color: "green" })
+); // color of front wall 
+frontWall.position.z = -25; // to move front wall back from camera
+
+//left wall
+const leftWall = new THREE.Mesh(
+    new THREE.BoxGeometry(50, 20, 0.001),
+    new THREE.MeshBasicMaterial({ color: "blue" })
+); // color of left wall 
+leftWall.rotation.y = Math.PI / 2; // rotate left wall on 90deg
+leftWall.position.x = -25; // move left wall on x to left
+
+//left wall
+const rightWall = new THREE.Mesh(
+    new THREE.BoxGeometry(50, 20, 0.001),
+    new THREE.MeshBasicMaterial({ color: "blue" })
+); // color of right wall 
+rightWall.rotation.y = Math.PI / 2; // rotate right wall on 90deg
+rightWall.position.x = 25; // move right wall on x to right
+
+wallGroup.add(frontWall, leftWall, rightWall); //add all walls to group
 
 //add controls, when we press keys
 document.addEventListener('keydown', onKeyDown, false);
