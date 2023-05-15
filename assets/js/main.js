@@ -14,18 +14,18 @@ scene.add(camera);
 camera.position.z = 5; //move camera back 5 units
 
 //Renderer
-const renderer = new THREE.WebGLRenderer({ antialias: true }); //for smooth adges
+const renderer = new THREE.WebGLRenderer({ antialias: false }); //for smooth adges
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0xffffff, 1); //bg
 document.body.appendChild(renderer.domElement); // add renderer to our html
 
 //set light
-const ambientLight = new THREE.AmbientLight(0x101010, 1.0); //color, intensity, distance, decay
+const ambientLight = new THREE.AmbientLight(0xdddddd, 1.0); //color, intensity, distance, decay
 ambientLight.position = camera.position; //light follows camera
 scene.add(ambientLight);
 
 //direction light
-const sunLight = new THREE.DirectionalLight(0xddddd, 1.0); //color, intensity
+const sunLight = new THREE.DirectionalLight(0xdddddd, 1.0); //color, intensity
 sunLight.position.y = 15;
 scene.add(sunLight);
 
@@ -81,6 +81,16 @@ rightWall.rotation.y = Math.PI / 2; // rotate right wall on 90deg
 rightWall.position.x = 25; // move right wall on x to right
 
 wallGroup.add(frontWall, leftWall, rightWall); //add all walls to group
+
+//create ceiling
+const ceilingGeometry = new THREE.PlaneBufferGeometry(50, 50);
+const ceilingMaterial = new THREE.MeshBasicMaterial({ color: 'purple' }); // color ceiling
+const ceilingPlane = new THREE.Mesh(ceilingGeometry, ceilingMaterial);
+ceilingPlane.rotation.x = Math.PI / 2; // rotate ceiling on 90deg
+ceilingPlane.position.y = 10; // move ceiling on y to up
+scene.add(ceilingPlane);
+
+
 
 //add controls, when we press keys
 document.addEventListener('keydown', onKeyDown, false);
