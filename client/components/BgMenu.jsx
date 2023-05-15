@@ -22,7 +22,7 @@ const BgMenu = () => {
 
                     <div>
                         <p><b>Instructions:</b></p>
-                        <p>Arrow Keys</p>
+                        <p>Arrow Keys and W/A/S/D</p>
                         <p>Look around with mouse</p>
                     </div>
 

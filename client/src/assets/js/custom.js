@@ -134,6 +134,8 @@ function startExpirience() {
     //hide menu
     hideMenu();
 }
+const canvas = document.querySelector('canvas');
+canvas.style.display = "none";
 
 const playButton = document.getElementById('play-button');
 playButton.addEventListener('click', startExpirience);
@@ -141,12 +143,18 @@ playButton.addEventListener('click', startExpirience);
 //hide menu 
 function hideMenu() {
     const menu = document.getElementById('menu-wrap');
+    const canvas = document.querySelector('canvas');
+
     menu.classList.add('hide');
+    canvas.style.display = "block";
 };
 //show menu 
 function showMenu() {
     const menu = document.getElementById('menu-wrap');
+    const canvas = document.querySelector('canvas');
+
     menu.classList.remove('hide');
+    canvas.style.display = "none";
 };
 
 controls.addEventListener('unlock', showMenu);
@@ -154,17 +162,17 @@ controls.addEventListener('unlock', showMenu);
 //add controls, when we press keys
 document.addEventListener('keydown', onKeyDown, false);
 function onKeyDown(event) {
-    // 37 left, 38 up, 39 right, 40 down
+    // 37 left, 38 up, 39 right, 40 down and keyss for WASD move
     let keycode = event.which;
 
-    if (keycode === 39) {
-        camera.translateX(-0.05);
-    } else if (keycode === 37) {
-        camera.translateX(0.05);
-    } else if (keycode === 38) {
-        camera.translateY(-0.05);
-    } else if (keycode === 40) {
-        camera.translateY(0.05);
+    if (keycode === 39 || keycode === 68) {
+        controls.moveRight(0.08);
+    } else if (keycode === 37 || keycode === 65) {
+        controls.moveRight(-0.08);
+    } else if (keycode === 38 || keycode === 87) {
+        controls.moveForward(0.08);
+    } else if (keycode === 40 || keycode === 83) {
+        controls.moveForward(-0.08);
     }
 
 };
