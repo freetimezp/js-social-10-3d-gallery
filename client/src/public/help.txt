@@ -2,6 +2,7 @@ https://www.youtube.com/watch?v=vfMizAmPprs
 https://www.youtube.com/watch?v=r2EGubR8BdA
 https://www.youtube.com/watch?v=-LYzINUN-mU&list=PLL0NS7nr67RatIPmksfUPDWJ5bc8vy1VU&index=5
 https://www.youtube.com/watch?v=nDzmB-Fr6Bw&list=PLL0NS7nr67RatIPmksfUPDWJ5bc8vy1VU&index=4
+https://www.youtube.com/watch?v=RIj2rzjlJnw&list=PLL0NS7nr67RatIPmksfUPDWJ5bc8vy1VU&index=6
 https://threejs.org/
 https://github.com/mrdoob/three.js/
 https://www.pexels.com/
