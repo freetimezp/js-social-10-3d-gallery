@@ -114,11 +114,11 @@ function createPainting(imageUrl, width, height, position) {
 
 // paint 1
 const painting1 = createPainting(
-    'img/gallery/img-1.jpg', 10, 5, new THREE.Vector3(-10, 5, -24.99)
+    'img/gallery/img-1.jpg', 15, 8, new THREE.Vector3(-10, 5, -24.99)
 );
 // paint 2
 const painting2 = createPainting(
-    'img/gallery/img-2.jpg', 10, 5, new THREE.Vector3(10, 5, -24.99)
+    'img/gallery/img-2.jpg', 15, 8, new THREE.Vector3(10, 5, -24.99)
 );
 
 scene.add(painting1, painting2);

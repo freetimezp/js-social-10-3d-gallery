@@ -2,14 +2,12 @@ import React from 'react';
 
 import '../src/assets/css/style.css';
 
-import BgMenuImg from '../public/img/bg-menu.jpg';
-
 const BgMenu = () => {
     return (
         <div className="background_menu" id="menu-wrap">
             <div className="menu" id="menu">
                 <div className="img_container" id="img-container">
-                    <img src={BgMenuImg} alt="stars" />
+                    <div id="starry_night_bg"></div>
                 </div>
 
                 <div className="content">
