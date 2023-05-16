@@ -37,10 +37,10 @@ function createPainting(imageUrl, width, height, position) {
 
 // paint 1
 const painting1 = createPainting(
-    'img/gallery/img-1.jpg',
-    10,
-    5,
-    new THREE.Vector3(-10, 5, -24.99)
+    'img/gallery/img-1.jpg', // url to img
+    10, //width
+    5, //height
+    new THREE.Vector3(-10, 5, -24.99) // position
 );
 // paint 2
 const painting2 = createPainting(
@@ -52,7 +52,7 @@ const painting2 = createPainting(
 
 // Painting on the left wall
 const painting3 = createPainting(
-    'img/gallery/img-1.jpg',
+    'img/gallery/img-3.jpg',
     10,
     5,
     new THREE.Vector3(-24.99, 5, -10)
@@ -61,14 +61,46 @@ painting3.rotation.y = Math.PI / 2;
 
 // Painting on the right wall
 const painting4 = createPainting(
-    'img/gallery/img-2.jpg',
+    'img/gallery/img-4.jpg',
     10,
     5,
     new THREE.Vector3(24.99, 5, -10)
 );
 painting4.rotation.y = -Math.PI / 2;
 
-scene.add(painting1, painting2, painting3, painting4);
+const painting5 = createPainting(
+    'img/gallery/img-5.jpg',
+    10,
+    5,
+    new THREE.Vector3(-24.99, 5, 10)
+);
+painting5.rotation.y = Math.PI / 2;
+
+const painting6 = createPainting(
+    'img/gallery/img-6.jpg',
+    10,
+    5,
+    new THREE.Vector3(24.99, 5, 10)
+);
+painting6.rotation.y = -Math.PI / 2;
+
+const painting7 = createPainting(
+    'img/gallery/img-7.jpg',
+    10,
+    5,
+    new THREE.Vector3(-10, 5, 19.99)
+);
+painting7.rotation.y = Math.PI;
+
+const painting8 = createPainting(
+    'img/gallery/img-8.jpg',
+    10,
+    5,
+    new THREE.Vector3(10, 5, 19.99)
+);
+painting8.rotation.y = Math.PI;
+
+scene.add(painting1, painting2, painting3, painting4, painting5, painting6, painting7, painting8);
 
 // We can use a combination of ambient light and spotlights to create a more natural and immersive lighting environment.
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
